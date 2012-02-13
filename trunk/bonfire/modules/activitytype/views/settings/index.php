@@ -40,7 +40,7 @@
 			<br />
 				<?php if (isset($records) && is_array($records) && count($records)) : ?>
 				
-					<h2>ActivityType</h2>
+					<h2>Type</h2>
 	<table>
 		<thead>
 			<tr>

@@ -35,7 +35,7 @@ $id = isset($justification['id']) ? "/".$justification['id'] : '';
 </div>
 
 <div>
-	<?php echo form_label('Activity Type', 'activitytype_id'); ?> <span class="required">*</span>
+	<?php echo form_label('Type', 'activitytype_id'); ?> <span class="required">*</span>
 	<?php
 		$options = array(0 => '');
 		foreach($activitytypes as $activitytype){

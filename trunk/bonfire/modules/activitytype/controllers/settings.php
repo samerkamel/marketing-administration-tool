@@ -30,7 +30,7 @@ class settings extends Admin_Controller {
 		Assets::add_js($this->load->view('settings/js', null, true), 'inline');
 		
 		Template::set('data', $data);
-		Template::set('toolbar_title', "Manage ActivityType");
+		Template::set('toolbar_title', "Manage Type");
 		Template::render();
 	}
 	
@@ -62,7 +62,7 @@ class settings extends Admin_Controller {
 		}
 	
 		Template::set('toolbar_title', lang('activitytype_create_new_button'));
-		Template::set('toolbar_title', lang('activitytype_create') . ' ActivityType');
+		Template::set('toolbar_title', lang('activitytype_create') . ' Type');
 		Template::render();
 	}
 	
@@ -103,7 +103,7 @@ class settings extends Admin_Controller {
 		Template::set('activitytype', $this->activitytype_model->find($id));
 	
 		Template::set('toolbar_title', lang('activitytype_edit_heading'));
-		Template::set('toolbar_title', lang('activitytype_edit') . ' ActivityType');
+		Template::set('toolbar_title', lang('activitytype_edit') . ' Type');
 		Template::render();		
 	}
 	
