@@ -39,6 +39,17 @@
 					?>
 					<?php echo form_dropdown('activitytype_id', $options, set_value('activitytype_id', ''))?>
 				</div>
+				
+				<div>
+					Product:<br />
+					<?php
+						$options = array('' => 'ALL');
+						foreach($products as $product){
+							$options[$product->id] = $product->product_name;
+						}
+					?>
+					<?php echo form_dropdown('product_id', $options, set_value('product_id', ''))?>
+				</div>
 			
 				<div>
 					PR Number:<br />
@@ -107,6 +118,7 @@
 						<th rowspan="2">User Group</th>
 						<th rowspan="2">Activity</th>
 						<th rowspan="2">Type</th>
+						<th rowspan="2">Product</th>
 						<th colspan="5">Justification</th>
 						<th colspan="12">Purchase Requisition (PR)</th>
 						<th colspan="5">Purchase Order (PO)</th>
@@ -158,6 +170,7 @@
 						<td><?php echo $record->usergroup_name ?></td>
 						<td><?php echo $record->marketingactivity_name ?></td>
 						<td><?php echo $record->activitytype_name ?></td>
+						<td><?php echo $record->product_name ?></td>
 						<td><?php echo $record->justification_approval_date?></td>
 						<td><?php echo $record->justification_description?></td>
 						<td><?php echo format_number($record->justification_amount)?></td>

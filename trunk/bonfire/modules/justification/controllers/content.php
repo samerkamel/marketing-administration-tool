@@ -18,6 +18,7 @@ class content extends Admin_Controller {
 		$this->load->model('usergroup/usergroup_model', null, true);
 		$this->load->model('marketingactivity/marketingactivity_model', null, true);
 		$this->load->model('activitytype/activitytype_model', null, true);
+		$this->load->model('product/product_model', null, true);
 		
 		$this->lang->load('justification');
 		$this->load->helper('number');
@@ -39,6 +40,7 @@ class content extends Admin_Controller {
 		$data['usergroups'] = $this->usergroup_model->find_all();
 		$data['marketingactivities'] = $this->marketingactivity_model->find_all();
 		$data['activitytypes'] = $this->activitytype_model->find_all();
+		$data['products'] = $this->product_model->find_all();
 		
 		$pagination_config['base_url'] = site_url('admin/content/justification/index');
         $pagination_config['total_rows'] = $this->justification_model->count_all();
@@ -88,6 +90,7 @@ class content extends Admin_Controller {
 		Template::set('usergroups', $this->usergroup_model->find_all());
 		Template::set('marketingactivities', $this->marketingactivity_model->find_all());
 		Template::set('activitytypes', $this->activitytype_model->find_all());
+		Template::set('products', $this->product_model->find_all());
 		
 		Template::render();
 	}
@@ -134,6 +137,7 @@ class content extends Admin_Controller {
 		Template::set('usergroups', $this->usergroup_model->find_all());
 		Template::set('marketingactivities', $this->marketingactivity_model->find_all());
 		Template::set('activitytypes', $this->activitytype_model->find_all());
+		Template::set('products', $this->product_model->find_all());
 		
 		Template::render();		
 	}
@@ -207,6 +211,7 @@ class content extends Admin_Controller {
 		$data['usergroup_id'] = $this->input->post('usergroup_id');
 		$data['marketingactivity_id'] = $this->input->post('marketingactivity_id');
 		$data['activitytype_id'] = $this->input->post('activitytype_id');
+		$data['product_id'] = $this->input->post('product_id');
 		$data['justification_approval_date']        = $this->input->post('justification_approval_date');
 		$data['justification_description']        = $this->input->post('justification_description');
 		$data['justification_amount']        = $this->input->post('justification_amount');
