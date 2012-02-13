@@ -160,11 +160,33 @@
 				</thead>
 				<tbody>
 					<?php
+						$calc_justification_amount_ids = array();
+						$sum_justification_amount = 0;
+						$calc_po_amount_ids = array();
 						$sum_invoice_amount = 0;
+						$calc_invoice_received_ids = array();
+						$sum_invoice_received_amount = 0;
+						$calc_invoice_ids = array();
+						$sum_po_amount = 0;
 					?>
 					<?php foreach ($records as $record) : ?>
 					<?php
-						$sum_invoice_amount = $sum_invoice_amount + $record->invoice_amount;
+						if(! in_array($record->justification_id, $calc_justification_amount_ids)){
+							$sum_justification_amount = $sum_justification_amount + $record->justification_amount;
+							$calc_justification_amount_ids[] = $record->justification_id;
+						}
+						if(! in_array($record->purchaseorder_id, $calc_po_amount_ids)){
+							$sum_po_amount = $sum_po_amount + $record->purchaseorder_amount;
+							$calc_po_amount_ids[] = $record->purchaseorder_id;
+						}
+						if(! in_array($record->invoice_id, $calc_invoice_received_ids)){
+							$sum_invoice_received_amount = $sum_invoice_received_amount + $record->invoice_received_amount;
+							$calc_invoice_received_ids[] = $record->invoice_id;
+						}
+						if(! in_array($record->invoice_id, $calc_invoice_ids)){
+							$sum_invoice_amount = $sum_invoice_amount + $record->invoice_amount;
+							$calc_invoice_ids[] = $record->invoice_id;
+						}
 					?>
 					<tr>
 						<td><?php echo $record->usergroup_name ?></td>
@@ -207,7 +229,13 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="28">&nbsp;</td>
+						<td colspan="6">&nbsp;</td>
+						<td><?php echo format_number($sum_justification_amount) ?></td>
+						<td colspan="14">&nbsp;</td>
+						<td><?php echo format_number($sum_po_amount) ?></td>
+						<td colspan="3">&nbsp;</td>
+						<td><?php echo format_number($sum_invoice_received_amount) ?></td>
+						<td colspan="3">&nbsp;</td>
 						<td><?php echo format_number($sum_invoice_amount) ?></td>
 						<td colspan="5">&nbsp;</td>
 					</tr>
