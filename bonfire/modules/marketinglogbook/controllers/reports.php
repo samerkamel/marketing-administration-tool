@@ -13,6 +13,7 @@ class reports extends Admin_Controller {
 		$this->load->model('usergroup/usergroup_model', null, true);
 		$this->load->model('marketingactivity/marketingactivity_model', null, true);
 		$this->load->model('activitytype/activitytype_model', null, true);
+		$this->load->model('product/product_model', null, true);
 		$this->load->model('purchaserequisition/purchaserequisition_model', null, true);
 		
 		$this->auth->restrict('MarketingLogbook.Reports.View');
@@ -37,6 +38,7 @@ class reports extends Admin_Controller {
 		$this->db->join('usergroup', 'usergroup.id = justification.usergroup_id', 'left');
 		$this->db->join('marketingactivity', 'marketingactivity.id = justification.marketingactivity_id', 'left');
 		$this->db->join('activitytype', 'activitytype.id = justification.activitytype_id', 'left');
+		$this->db->join('product', 'product.id = justification.product_id', 'left');
 		$this->db->join('purchaserequisition', 'justification.id = purchaserequisition.justification_id', 'left');
 		$this->db->join('purchaserequisition_purchaseorder', 'purchaserequisition_purchaseorder.purchaserequisition_id = purchaserequisition.id', 'left');
 		$this->db->join('purchaseorder', 'purchaserequisition_purchaseorder.purchaseorder_id = purchaseorder.id', 'left');
@@ -48,6 +50,7 @@ class reports extends Admin_Controller {
 			$this->form_validation->set_rules('usergroup_id','User Group','');
 			$this->form_validation->set_rules('marketingactivity_id','Activity','');
 			$this->form_validation->set_rules('activitytype_id','Type','');
+			$this->form_validation->set_rules('product_id','Product','');
 			$this->form_validation->set_rules('purchaserequisition_number','PR
 			Number','');
 			$this->form_validation->set_rules('purchaseorder_number','PO Number','');
@@ -73,6 +76,10 @@ class reports extends Admin_Controller {
 			}
 			if($this->input->post('activitytype_id')){
 				$this->db->where('activitytype_id', $this->input->post('activitytype_id'));
+				$is_filtered = TRUE;
+			}
+			if($this->input->post('product_id')){
+				$this->db->where('product_id', $this->input->post('product_id'));
 				$is_filtered = TRUE;
 			}
 			if($this->input->post('purchaserequisition_number')){
@@ -113,7 +120,7 @@ class reports extends Admin_Controller {
 		if ($this->input->post('download')){
 			$data['records'] = $this->marketinglogbook_model->order_by('justification.id', 'desc')->find_logbook();
 			
-			$header = explode(',', 'ID, User Group, Activity, Type, Budget Approval Date, Description, Budget Amount, Justification Number, Justification Creation Date, PR Number, Vendor, Job Number, PR Creation Date, Start Circulation, Approve Manager Budget, Approve VP or GM, Circulation Complete Date, PR Submit to Procurement, PO Number, PO Received from Procurement Date, Promised Date, PO Amount, Submit to Vendor Date, BAST Date, Received in Oracle Date, Received Amount, Remark PO, Invoice Number, Invoice Received Date, Invoice Amount, Sign Manager Date, Complete Date, Sign VP or GM Date, Complete Date, Submit to Treasury Date');
+			$header = explode(',', 'ID, User Group, Activity, Type, Product, Budget Approval Date, Description, Budget Amount, Justification Number, Justification Creation Date, PR Number, Vendor, Job Number, PR Creation Date, Start Circulation, Approve Manager Budget, Approve VP or GM, Circulation Complete Date, PR Submit to Procurement, PO Number, PO Received from Procurement Date, Promised Date, PO Amount, Submit to Vendor Date, BAST Date, Received in Oracle Date, Received Amount, Remark PO, Invoice Number, Invoice Received Date, Invoice Amount, Sign Manager Date, Complete Date, Sign VP or GM Date, Complete Date, Submit to Treasury Date');
 			object_arr_to_csv($data['records'], $header, "logbook.csv");
 			
 			exit();
@@ -137,6 +144,7 @@ class reports extends Admin_Controller {
 			$data['usergroups'] = $this->usergroup_model->find_all();
 			$data['marketingactivities'] = $this->marketingactivity_model->find_all();
 			$data['activitytypes'] = $this->activitytype_model->find_all();
+			$data['products'] = $this->product_model->find_all();
 			
 			Template::set('data', $data);
 			Template::set('toolbar_title', "Show Marketing Logbook");

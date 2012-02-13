@@ -48,6 +48,7 @@
 		<th>User Group</th>
 		<th>Activity</th>
 		<th>Type</th>
+		<th>Product</th>
 		<th>Budget Approval Date</th>
 		<th>Description</th>
 		<th>Budget Amount</th>
@@ -85,6 +86,15 @@ foreach ($records as $record) : ?>
 					}
 					if($i < sizeof($activitytypes)){
 						echo $activitytypes[$i]->activitytype_name;
+					}
+				?></td>
+				<td><?php 
+					$i = 0;
+					while($i < sizeof($products) && $record->product_id != $products[$i]->id){
+						$i++;
+					}
+					if($i < sizeof($products)){
+						echo $products[$i]->product_name;
 					}
 				?></td>
 				<td><?php echo $record->justification_approval_date?></td>

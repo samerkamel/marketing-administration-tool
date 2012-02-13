@@ -46,6 +46,17 @@ $id = isset($justification['id']) ? "/".$justification['id'] : '';
 </div>
 
 <div>
+	<?php echo form_label('Product', 'product_id'); ?> <span class="required">*</span>
+	<?php
+		$options = array(0 => '');
+		foreach($products as $product){
+			$options[$product->id] = $product->product_name;
+		}
+	?>
+	<?php echo form_dropdown('product_id', $options, set_value('product_id', isset($justification['product_id']) ? $justification['product_id'] : ''))?>
+</div>
+
+<div>
         <?php echo form_label('Budget Approval Date', 'justification_approval_date'); ?> <span class="required">*</span>
 			<script>head.ready(function(){$('#justification_approval_date').datepicker({ dateFormat: 'yy-mm-dd'});});</script>
         <input id="justification_approval_date" type="text" name="justification_approval_date"  value="<?php echo set_value('justification_approval_date', isset($justification['justification_approval_date']) ? $justification['justification_approval_date'] : ''); ?>"  />

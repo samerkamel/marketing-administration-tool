@@ -12,7 +12,7 @@ class Marketinglogbook_model extends BF_Model {
 	public function find_logbook()
 	{
 		return $this->select("
-			`justification`.`id`, `usergroup_name`, `marketingactivity_name`, `activitytype_name`, 
+			`justification`.`id`, `usergroup_name`, `marketingactivity_name`, `activitytype_name`, `product_name`,
 
 			`justification_approval_date`, `justification_description`, `justification_amount`, `justification_number`, `justification_creation_date`, 
 
