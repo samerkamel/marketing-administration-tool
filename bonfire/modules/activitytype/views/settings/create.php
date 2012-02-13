@@ -20,6 +20,6 @@ $id = isset($activitytype['id']) ? "/".$activitytype['id'] : '';
 
 	<div class="text-right">
 		<br/>
-		<input type="submit" name="submit" value="Create ActivityType" /> or <?php echo anchor(SITE_AREA .'/settings/activitytype', lang('activitytype_cancel')); ?>
+		<input type="submit" name="submit" value="Create Type" /> or <?php echo anchor(SITE_AREA .'/settings/activitytype', lang('activitytype_cancel')); ?>
 	</div>
 	<?php echo form_close(); ?>
