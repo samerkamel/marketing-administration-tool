@@ -122,7 +122,8 @@
 						<th colspan="5">Justification</th>
 						<th colspan="12">Purchase Requisition (PR)</th>
 						<th colspan="5">Purchase Order (PO)</th>
-						<th colspan="12">Invoice</th>
+						<th colspan="9">Invoice</th>
+						<th rowspan="2" style="width:200px">Edit Actions</th>
 					</tr>
 					<tr>
 						<th>Budget Approval Date</th>
@@ -224,6 +225,12 @@
 						<td><?php echo $record->invoice_sign_vp_date ?></td>
 						<td><?php echo $record->invoice_complete_2_date ?></td>
 						<td><?php echo $record->invoice_submit_date ?></td>
+						<td>
+							<?php echo anchor(SITE_AREA .'/content/justification/edit/'. $record->justification_id, 'Justification', ''); ?>&nbsp;
+							<?php echo anchor(SITE_AREA .'/content/purchaserequisition/edit/'. $record->purchaserequisition_id, 'PR', ''); ?>&nbsp;
+							<?php echo anchor(SITE_AREA .'/content/purchaseorder/edit/'. $record->purchaseorder_id, 'PO', ''); ?>&nbsp;
+							<?php echo anchor(SITE_AREA .'/content/invoice/edit/'. $record->invoice_id, 'Invoice', ''); ?>&nbsp;
+						</td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -237,7 +244,7 @@
 						<td><?php echo format_number($sum_invoice_received_amount) ?></td>
 						<td colspan="3">&nbsp;</td>
 						<td><?php echo format_number($sum_invoice_amount) ?></td>
-						<td colspan="5">&nbsp;</td>
+						<td colspan="6">&nbsp;</td>
 					</tr>
 				</tfoot>
 			</table>
