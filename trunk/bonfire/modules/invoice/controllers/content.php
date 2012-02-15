@@ -204,8 +204,42 @@ class content extends Admin_Controller {
 			return FALSE;
 		}
 		
-		// make sure we only pass in the fields we want
+		// Validate Sign Manager Date
+		if($this->input->post('invoice_sign_manager_date') != ''){
+			$invoice_sign_manager_date = $this->input->post('invoice_sign_manager_date');
+		}else{
+			$invoice_sign_manager_date = '0000-00-00';
+		}
 		
+		// Validate Complete Date
+		if($this->input->post('invoice_complete_1_date') != ''){
+			$invoice_complete_1_date = $this->input->post('invoice_complete_1_date');
+		}else{
+			$invoice_complete_1_date = '0000-00-00';
+		}
+		
+		// Sign VP or GM Date
+		if($this->input->post('invoice_sign_vp_date') != ''){
+			$invoice_sign_vp_date = $this->input->post('invoice_sign_vp_date');
+		}else{
+			$invoice_sign_vp_date = '0000-00-00';
+		}
+		
+		// Validate Complete Date
+		if($this->input->post('invoice_complete_2_date') != ''){
+			$invoice_complete_2_date = $this->input->post('invoice_complete_2_date');
+		}else{
+			$invoice_complete_2_date = '0000-00-00';
+		}
+		
+		// Submit to Treasury Date
+		if($this->input->post('invoice_submit_date') != ''){
+			$invoice_submit_date = $this->input->post('invoice_submit_date');
+		}else{
+			$invoice_submit_date = '0000-00-00';
+		}
+		
+		// make sure we only pass in the fields we want
 		$data = array();
 		$data['invoice_bast_date']        = $this->input->post('invoice_bast_date');
 		$data['invoice_received_oracle_date']        = $this->input->post('invoice_received_oracle_date');
@@ -214,11 +248,11 @@ class content extends Admin_Controller {
 		$data['invoice_number']        = $this->input->post('invoice_number');
 		$data['invoice_received_date']        = $this->input->post('invoice_received_date');
 		$data['invoice_amount']        = $this->input->post('invoice_amount');
-		$data['invoice_sign_manager_date']        = $this->input->post('invoice_sign_manager_date');
-		$data['invoice_complete_1_date']        = $this->input->post('invoice_complete_1_date');
-		$data['invoice_sign_vp_date']        = $this->input->post('invoice_sign_vp_date');
-		$data['invoice_complete_2_date']        = $this->input->post('invoice_complete_2_date');
-		$data['invoice_submit_date']        = $this->input->post('invoice_submit_date');
+		$data['invoice_sign_manager_date']        = $invoice_sign_manager_date;
+		$data['invoice_complete_1_date']        = $invoice_complete_1_date;
+		$data['invoice_sign_vp_date']        = $invoice_sign_vp_date;
+		$data['invoice_complete_2_date']        = $invoice_complete_2_date;
+		$data['invoice_submit_date']        = $invoice_submit_date;
 		
 		if ($type == 'insert')
 		{
