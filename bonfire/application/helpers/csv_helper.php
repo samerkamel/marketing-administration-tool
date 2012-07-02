@@ -88,6 +88,8 @@ if ( ! function_exists('object_arr_to_csv'))
 		foreach ($arr as $line)
 		{
 			$n++;
+			$line = str_replace("\r\n", "", $line);
+			$line = str_replace("\n", "", $line);
 			if ( ! fputcsv($f, $line))
 			{
 				show_error("Can't write line $n: $line");
