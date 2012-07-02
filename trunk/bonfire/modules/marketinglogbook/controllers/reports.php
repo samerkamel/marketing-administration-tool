@@ -118,7 +118,7 @@ class reports extends Admin_Controller {
 		
 		$data = array();
 		if ($this->input->post('download')){
-			$data['records'] = $this->marketinglogbook_model->order_by('justification.id', 'desc')->find_logbook();
+			$data['records'] = $this->marketinglogbook_model->order_by('justification.id', 'desc')->export_logbook();
 			
 			$header = explode(',', 'ID, User Group, Activity, Type, Product, Budget Approval Date, Description, Budget Amount, Justification Number, Justification Creation Date, PR Number, Vendor, Job Number, PR Creation Date, Start Circulation, Approve Manager Budget, Approve VP or GM, Circulation Complete Date, PR Submit to Procurement, PO Number, PO Received from Procurement Date, Promised Date, PO Amount, Submit to Vendor Date, BAST Date, Received in Oracle Date, Received Amount, Remark PO, Invoice Number, Invoice Received Date, Invoice Amount, Sign Manager Date, Complete Date, Sign VP or GM Date, Complete Date, Submit to Treasury Date');
 			object_arr_to_csv($data['records'], $header, "logbook.csv");
